@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using GenericRepository;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DAL.Repositories
@@ -11,5 +12,7 @@ namespace DAL.Repositories
         Task<Product> LikeProductByUser(int userId, int productId);
 
         Task<Product> UnlikeProductByUser(int userId, int productId);
+
+        Task<IEnumerable<Product>> GetProductRangeById(IEnumerable<int> ids);
     }
 }

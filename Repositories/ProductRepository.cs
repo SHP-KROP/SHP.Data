@@ -3,6 +3,7 @@ using GenericRepository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,6 +33,18 @@ namespace DAL.Repositories
             var query = await FindAsync(pr => pr.Name == name);
             
             return query.FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductRangeById(IEnumerable<int> ids)
+        {
+            var productsInRange = await _context.Set<Product>().Where(product => ids.Contains(product.Id)).ToListAsync();
+
+            if (!productsInRange.Any())
+            {
+                return null;
+            }
+
+            return productsInRange;
         }
 
         public async Task<Product> LikeProductByUser(int userId, int productId)
