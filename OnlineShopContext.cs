@@ -68,7 +68,8 @@ namespace DAL
                 .HasMany(p => p.Likes)
                 .WithOne(like => like.Product)
                 .HasForeignKey(like => like.ProductId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientSetNull);
 
             builder
                 .Entity<AppUser>()
@@ -76,7 +77,7 @@ namespace DAL
                 .WithOne(like => like.User)
                 .HasForeignKey(like => like.UserId)
                 .IsRequired()
-                .OnDelete(DeleteBehavior.NoAction);
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }

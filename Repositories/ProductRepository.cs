@@ -113,7 +113,7 @@ namespace DAL.Repositories
                 return null;
             }
 
-            user.Likes.Remove(like);
+            _context.Set<Like>().Remove(like);
 
             return product;
         }
