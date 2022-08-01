@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace DAL.Migrations
+namespace SHP.Data.Migrations
 {
     [DbContext(typeof(OnlineShopContext))]
     partial class OnlineShopContextModelSnapshot : ModelSnapshot
@@ -385,13 +385,11 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.Product", "Product")
                         .WithMany("Likes")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DAL.Entities.AppUser", "User")
                         .WithMany("Likes")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
