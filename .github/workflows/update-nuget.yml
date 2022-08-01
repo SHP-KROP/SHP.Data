@@ -1,9 +1,11 @@
+# Builds and pushes new nuget package version to nuget.org
+# It will trigger only after mergin into master 
+# and you need to set new version of nuget package in assembly
+
 name: .NET
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
