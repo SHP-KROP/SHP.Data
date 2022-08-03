@@ -9,6 +9,8 @@ namespace DAL.Interfaces
     {
         public Task<AppUser> GetUserByUsernameAsync(string username);
 
+        public Task<AppUser> GetUserByEmailAsync(string email);
+
         public Task<IEnumerable<AppUser>> GetUsersAsync();
 
         public Task<IdentityResult> CreateUserAsync(AppUser appUser, string password);
