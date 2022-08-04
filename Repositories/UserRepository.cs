@@ -11,10 +11,12 @@ namespace DAL.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly OnlineShopContext _context;
 
-        public UserRepository(UserManager<AppUser> userManager)
+        public UserRepository(UserManager<AppUser> userManager, OnlineShopContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public async Task<IdentityResult> AddToRoleAsync(AppUser appUser, string role)
@@ -35,6 +37,16 @@ namespace DAL.Repositories
             }
 
             return await _userManager.Users.FirstOrDefaultAsync(u => u.UserName.ToUpper() == username.ToUpper());
+        }
+
+        public async Task<AppUser> GetUserByEmailAsync(string email)
+        {
+            if (email is null)
+            {
+                return await Task.FromResult(null as AppUser);
+            }
+
+            return await _userManager.Users.FirstOrDefaultAsync(u => u.Email.ToUpper() == email.ToUpper());
         }
 
         public async Task<ICollection<string>> GetUserRoles(AppUser user)
@@ -91,6 +103,13 @@ namespace DAL.Repositories
             var products = user.Likes.Select(like => like.Product);
 
             return products;
+        }
+
+        public void RemoveUserById(int id)
+        {
+            var user = _userManager.Users.Where(u => u.Id == id).FirstOrDefault();
+
+            _context.Remove(user);
         }
     }
 }
