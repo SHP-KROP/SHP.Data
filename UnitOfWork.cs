@@ -17,7 +17,7 @@ namespace DAL.Interfaces
 
             ProductRepository = new ProductRepository(context);
             CategoryRepository = new CategoryRepository(context);
-            UserRepository = new UserRepository(userManager);
+            UserRepository = new UserRepository(userManager, _context);
             SignInManager = new SignInManager(signInManager);
         }
 
