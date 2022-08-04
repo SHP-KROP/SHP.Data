@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SHP.Data.Migrations
 {
     [DbContext(typeof(OnlineShopContext))]
-    [Migration("20220801191848_LikeFeature")]
+    [Migration("20220801190740_LikeFeature")]
     partial class LikeFeature
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -387,12 +387,12 @@ namespace SHP.Data.Migrations
                     b.HasOne("DAL.Entities.Product", "Product")
                         .WithMany("Likes")
                         .HasForeignKey("ProductId")
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("DAL.Entities.AppUser", "User")
                         .WithMany("Likes")
                         .HasForeignKey("UserId")
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Product");
 
