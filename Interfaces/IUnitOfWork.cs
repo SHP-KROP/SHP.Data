@@ -13,6 +13,8 @@ namespace DAL.Interfaces
 
         ISignInManager SignInManager { get; }
 
+        IRefreshTokenRepository RefreshTokenRepository { get; }
+
         Task<bool> ConfirmAsync();
     }
 }

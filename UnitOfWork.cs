@@ -1,6 +1,7 @@
 ﻿using DAL.Entities;
 using DAL.Repositories;
 using Microsoft.AspNetCore.Identity;
+using SHP.Data.Repositories;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
@@ -17,8 +18,9 @@ namespace DAL.Interfaces
 
             ProductRepository = new ProductRepository(context);
             CategoryRepository = new CategoryRepository(context);
-            UserRepository = new UserRepository(userManager, _context);
+            UserRepository = new UserRepository(userManager, context);
             SignInManager = new SignInManager(signInManager);
+            RefreshTokenRepository = new RefreshTokenRepository(context);
         }
 
         public IProductRepository ProductRepository { get; private set; }
@@ -28,6 +30,8 @@ namespace DAL.Interfaces
         public IUserRepository UserRepository { get; private set; }
 
         public ISignInManager SignInManager { get; private set; }
+
+        public IRefreshTokenRepository RefreshTokenRepository { get; private set; }
 
         public async Task<bool> ConfirmAsync()
         {
