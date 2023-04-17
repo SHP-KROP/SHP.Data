@@ -5,8 +5,6 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHP.Data", "SHP.Data.csproj", "{C3EEB80F-E9E7-4E52-8EED-D01A2CCD088F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHP.OnlineShopAPI.Web", "..\SHP.OnlineShopAPI\SHP.OnlineShopAPI.Web\SHP.OnlineShopAPI.Web.csproj", "{4D15CD66-F4E5-447F-9309-86C633319DCF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C3EEB80F-E9E7-4E52-8EED-D01A2CCD088F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3EEB80F-E9E7-4E52-8EED-D01A2CCD088F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3EEB80F-E9E7-4E52-8EED-D01A2CCD088F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4D15CD66-F4E5-447F-9309-86C633319DCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4D15CD66-F4E5-447F-9309-86C633319DCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4D15CD66-F4E5-447F-9309-86C633319DCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4D15CD66-F4E5-447F-9309-86C633319DCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
