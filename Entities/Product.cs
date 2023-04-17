@@ -24,6 +24,8 @@ namespace DAL.Entities
 
         public ICollection<Like> Likes { get; set; }
 
+        public ICollection<ProductInOrder> ProductsInOrder { get; set; }
+
         public AppUser User { get; set; }
     }
 }
