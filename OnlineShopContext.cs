@@ -35,6 +35,10 @@ namespace DAL
 
         public DbSet<RefreshToken> RefreshTokens { get; set; }
 
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<ProductInOrder> ProductsInOrder { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -80,6 +84,20 @@ namespace DAL
                 .HasForeignKey(like => like.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            builder
+                .Entity<Order>()
+                .HasMany(o => o.ProductsInOrder)
+                .WithOne(o => o.Order)
+                .HasForeignKey(x => x.OrderId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder
+                .Entity<AppUser>()
+                .HasMany(u => u.Orders)
+                .WithOne(p => p.User)
+                .IsRequired();
         }
     }
 }

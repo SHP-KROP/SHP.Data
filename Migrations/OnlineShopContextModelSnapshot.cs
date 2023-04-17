@@ -187,6 +187,26 @@ namespace SHP.Data.Migrations
                     b.ToTable("Likes");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTimeOffset>("CreatedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("DAL.Entities.Photo", b =>
                 {
                     b.Property<int>("Id")
@@ -265,6 +285,31 @@ namespace SHP.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductCategories");
+                });
+
+            modelBuilder.Entity("DAL.Entities.ProductInOrder", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductsInOrder");
                 });
 
             modelBuilder.Entity("DAL.Entities.RefreshToken", b =>
@@ -427,6 +472,17 @@ namespace SHP.Data.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Order", b =>
+                {
+                    b.HasOne("DAL.Entities.AppUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("DAL.Entities.Photo", b =>
                 {
                     b.HasOne("DAL.Entities.Product", "Product")
@@ -464,6 +520,25 @@ namespace SHP.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("DAL.Entities.ProductInOrder", b =>
+                {
+                    b.HasOne("DAL.Entities.Order", "Order")
+                        .WithMany("ProductsInOrder")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DAL.Entities.Product", "Product")
+                        .WithMany("ProductsInOrder")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
@@ -524,6 +599,8 @@ namespace SHP.Data.Migrations
                 {
                     b.Navigation("Likes");
 
+                    b.Navigation("Orders");
+
                     b.Navigation("Products");
 
                     b.Navigation("UserRoles");
@@ -534,6 +611,11 @@ namespace SHP.Data.Migrations
                     b.Navigation("ProductCategories");
                 });
 
+            modelBuilder.Entity("DAL.Entities.Order", b =>
+                {
+                    b.Navigation("ProductsInOrder");
+                });
+
             modelBuilder.Entity("DAL.Entities.Product", b =>
                 {
                     b.Navigation("Likes");
@@ -541,6 +623,8 @@ namespace SHP.Data.Migrations
                     b.Navigation("Photos");
 
                     b.Navigation("ProductCategories");
+
+                    b.Navigation("ProductsInOrder");
                 });
 #pragma warning restore 612, 618
         }

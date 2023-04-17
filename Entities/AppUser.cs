@@ -20,5 +20,7 @@ namespace DAL.Entities
         public ICollection<Product> Products { get; set; }
 
         public ICollection<Like> Likes { get; set; }
+
+        public ICollection<Order> Orders { get; set; }
     }
 }

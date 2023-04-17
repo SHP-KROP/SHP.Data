@@ -1,4 +1,5 @@
 ﻿using DAL.Repositories;
+using SHP.Data.Interfaces;
 using System.Threading.Tasks;
 
 namespace DAL.Interfaces
@@ -14,6 +15,8 @@ namespace DAL.Interfaces
         ISignInManager SignInManager { get; }
 
         IRefreshTokenRepository RefreshTokenRepository { get; }
+
+        IOrderRepository OrderRepository { get; }
 
         Task<bool> ConfirmAsync();
     }
